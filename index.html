@@ -46,6 +46,7 @@
     section { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--ink); scroll-margin-top: 24px; }
     .project, .research-note { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; }
     .project + .project { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .nowrap { white-space: nowrap; }
     .meta { margin: 0; max-width: 220px; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 22px 0 0; font-size: 13px; font-weight: 500; }
     footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
@@ -59,6 +60,29 @@
       .meta { max-width: none; }
       .links { gap: 12px 20px; }
       footer { margin-top: 48px; }
+    }
+
+    /* Typography and topology illustration. */
+    main { max-width: 1120px; }
+    header { grid-template-columns: minmax(0, 1fr) 340px; column-gap: 64px; }
+    nav { grid-column: 1 / -1; grid-row: 2; margin-top: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .eyebrow, nav, h2, .meta, .links, footer, figcaption { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
+    .eyebrow { grid-column: 1 / -1; }
+    h1, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    h1 { grid-column: 1; grid-row: 3; margin: 56px 0 24px; font-size: clamp(44px, 6vw, 68px); letter-spacing: -.045em; }
+    header > p.intro { grid-column: 1; grid-row: 4; font-size: 22px; }
+    header > p:not(.eyebrow):not(.intro) { grid-column: 1; grid-row: 5; font-size: 15px; }
+    h3 { font-size: 26px; }
+    h2 { font-size: 12px; font-weight: 500; }
+    .topology { grid-column: 2; grid-row: 3 / 6; align-self: center; margin: 48px 0 0; }
+    .topology svg { display: block; width: 100%; height: auto; }
+    .topology text { font-family: ui-monospace, Consolas, monospace; fill: #666; font-size: 11px; }
+    .project, .research-note { grid-template-columns: 260px minmax(0, 1fr); gap: 48px; }
+    @media (max-width: 900px) {
+      header { display: block; }
+      h1 { margin-top: 40px; }
+      .topology { max-width: 380px; margin: 32px auto 0; }
+      .project, .research-note { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     }
   </style>
 </head>
@@ -77,6 +101,42 @@
         <a href="https://raw.githubusercontent.com/kbr-/cv/refs/heads/main/cv.pdf">CV (PDF)</a>
         <a href="https://github.com/kbr-">GitHub · kbr-</a>
       </nav>
+      <figure class="topology">
+        <svg viewBox="0 0 340 320" role="img" aria-labelledby="topology-title topology-description">
+          <title id="topology-title">A loop appears, then fills in</title>
+          <desc id="topology-description">Three stages of the Vietoris–Rips filtration of a unit square: four isolated points, a square loop at scale one, and a filled complex at scale square root of two. The first-homology barcode has one interval from one to square root of two.</desc>
+          <defs>
+            <g id="square-points" fill="#171717">
+              <circle cx="0" cy="0" r="3.5"/><circle cx="56" cy="0" r="3.5"/>
+              <circle cx="56" cy="56" r="3.5"/><circle cx="0" cy="56" r="3.5"/>
+            </g>
+          </defs>
+          <g transform="translate(14 55)"><use href="#square-points"/></g>
+          <g transform="translate(141 55)">
+            <path d="M0 0H56V56H0Z" fill="none" stroke="#171717" stroke-width="1.5"/>
+            <use href="#square-points"/>
+          </g>
+          <g transform="translate(266 55)">
+            <path d="M0 0H56V56H0Z" fill="#e6e6e6" stroke="#171717" stroke-width="1.5"/>
+            <path d="M0 0L56 56M56 0L0 56" stroke="#999" stroke-width="1"/>
+            <use href="#square-points"/>
+          </g>
+          <g fill="none" stroke="#aaa"><path d="M89 83h29m-5-4 5 4-5 4"/><path d="M214 83h29m-5-4 5 4-5 4"/></g>
+          <text x="42" y="139" text-anchor="middle">r = 0</text>
+          <text x="169" y="139" text-anchor="middle">r = 1</text>
+          <text x="294" y="139" text-anchor="middle">r = √2</text>
+          <text x="8" y="235">H₁</text>
+          <path d="M42 252H322" fill="none" stroke="#bbb"/>
+          <path d="M169 221V259M222 221V259" stroke="#ddd" stroke-dasharray="2 4"/>
+          <path d="M169 231H222" stroke="#171717" stroke-width="3"/>
+          <circle cx="169" cy="231" r="4" fill="#171717"/>
+          <circle cx="222" cy="231" r="4" fill="white" stroke="#171717" stroke-width="1.5"/>
+          <text x="42" y="277" text-anchor="middle">0</text>
+          <text x="169" y="277" text-anchor="middle">1</text>
+          <text x="222" y="277" text-anchor="middle">√2</text>
+          <text x="310" y="277">r</text>
+        </svg>
+      </figure>
     </header>
 
     <section id="projects" aria-labelledby="projects-heading">
@@ -84,7 +144,7 @@
       <article class="project">
         <div class="project-heading">
           <h3>Math Research</h3>
-        <p class="meta">Ongoing research · Python · C++ · Computational verification</p>
+        <p class="meta">Ongoing research · Python · <span class="nowrap">C++</span> · Computational verification</p>
         </div>
         <div class="project-description">
         <p>An open research notebook investigating superpolynomial proof-size lower bounds in restricted proof systems. The work is AI-assisted, and the central lower-bound question remains open.</p>
@@ -112,7 +172,7 @@
       <article class="project">
         <div class="project-heading">
           <h3>Motions</h3>
-          <p class="meta">Collaborative bachelor’s project · Haskell · C++</p>
+          <p class="meta">Collaborative bachelor’s project · Haskell · <span class="nowrap">C++</span></p>
         </div>
         <div class="project-description">
           <p>I contributed to Motions as part of my bachelor’s project: a Markov Chain Monte Carlo simulation of chromatin movements within a cell nucleus, modelling DNA–protein interactions. The project brings together mathematical modelling, scientific computing, and functional programming.</p>
@@ -134,10 +194,10 @@
       <article class="project">
         <div class="project-heading">
           <h3>concat-cpp</h3>
-        <p class="meta">Compiler experiment · Haskell · C++</p>
+        <p class="meta">Compiler experiment · Haskell · <span class="nowrap">C++</span></p>
         </div>
         <div class="project-description">
-          <p>An experiment in translating Haskell to C++ using Conal Elliott's “Compiling to Categories” approach. It explores the connection between functional programming, category theory, and code generation.</p>
+          <p>An experiment in translating Haskell to <span class="nowrap">C++</span> using Conal Elliott's “Compiling to Categories” approach. It explores the connection between functional programming, category theory, and code generation.</p>
         <p class="links"><a href="https://github.com/kbr-/concat-cpp">concat-cpp source</a></p>
         </div>
       </article>
