@@ -45,7 +45,7 @@
     a:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
     section { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--ink); scroll-margin-top: 24px; }
     .project, .research-note { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; }
-    .project + .project { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .project + .project, .research-note + .research-note { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
     .nowrap { white-space: nowrap; }
     .meta { margin: 0; max-width: 220px; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 22px 0 0; font-size: 13px; font-weight: 500; }
@@ -216,6 +216,19 @@
           <a href="https://github.com/LPaxos/LPaxos/blob/main/thesis.pdf">Read the thesis (PDF)</a>
           <a href="https://github.com/LPaxos/LPaxos">Thesis source</a>
         </p>
+        </div>
+      </article>
+      <article class="research-note">
+        <div class="project-heading">
+          <h3>Introduction to persistent homology</h3>
+          <p class="meta">Bachelor’s thesis · Mathematics · 2018</p>
+        </div>
+        <div class="project-description">
+          <p>Co-authored with Krzysztof Pszeniczny, this thesis introduces persistent homology for computer scientists and data analysts: a way to study the shape of data by tracking topological features across scales.</p>
+          <p>Assuming only basic linear algebra, it develops the necessary topology and algebra, then explains persistence modules, barcodes, and an algorithm for computing persistent homology of a filtered simplicial complex.</p>
+          <p class="links">
+            <a href="https://raw.githubusercontent.com/kbr-/math-bsc-thesis/refs/heads/main/pracalic.pdf">Read the thesis (PDF)</a>
+          </p>
         </div>
       </article>
     </section>
