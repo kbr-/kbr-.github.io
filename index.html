@@ -31,7 +31,7 @@
       letter-spacing: .1em;
       text-transform: uppercase;
     }
-    nav { grid-column: 2; grid-row: 1; display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 13px; }
+    nav { grid-column: 2; grid-row: 1; display: flex; flex-wrap: wrap; gap: 12px 18px; font-size: 13px; }
     h1, h2, h3 { line-height: 1.2; font-weight: 550; }
     h1 { grid-column: 1 / -1; margin: 72px 0 28px; font-size: clamp(44px, 7vw, 72px); letter-spacing: -.055em; }
     header > p:not(.eyebrow) { grid-column: 1 / -1; max-width: 680px; }
@@ -49,7 +49,7 @@
     .meta { margin: 0; max-width: 220px; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 22px 0 0; font-size: 13px; font-weight: 500; }
     footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
       main { padding: 32px 24px 24px; }
       header { display: block; }
       nav { margin-top: 28px; }
@@ -67,11 +67,13 @@
     <header>
       <p class="eyebrow">Software &amp; mathematics</p>
       <h1>Kamil Braun</h1>
-      <p class="intro">I'm interested in distributed systems, programming languages, and the connections between mathematics and software.</p>
-      <p>My projects range from a distributed database prototype and a Linux device driver to experimental compilers. More recently, I've been exploring proof complexity through an AI-assisted research notebook and reproducible computational experiments.</p>
+      <p class="intro">I'm a software engineer specializing in distributed systems, database internals, and correctness.</p>
+      <p>Previously at ScyllaDB and poolside, I've worked on consensus protocols, database control planes, and infrastructure for training programming models. I'm also interested in programming languages and the connections between mathematics and software, including AI-assisted proof-complexity research.</p>
       <nav aria-label="Main navigation">
+        <a href="#engineering">Engineering</a>
         <a href="#projects">Projects</a>
-        <a href="#writing">Writing &amp; research</a>
+        <a href="#background">Background</a>
+        <a href="#contact">Contact</a>
         <a href="https://raw.githubusercontent.com/kbr-/cv/refs/heads/main/cv.pdf">CV (PDF)</a>
         <a href="https://github.com/kbr-">GitHub · kbr-</a>
       </nav>
@@ -105,6 +107,18 @@
           <a href="https://github.com/LPaxos/lattistore">LattiStore source</a>
           <a href="https://github.com/LPaxos/LPaxos">LPaxos research</a>
         </p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3>Motions</h3>
+          <p class="meta">Collaborative bachelor’s project · Haskell · C++</p>
+        </div>
+        <div class="project-description">
+          <p>I contributed to Motions as part of my bachelor’s project: a Markov Chain Monte Carlo simulation of chromatin movements within a cell nucleus, modelling DNA–protein interactions. The project brings together mathematical modelling, scientific computing, and functional programming.</p>
+          <p class="links">
+            <a href="https://github.com/Motions/motions">Motions source &amp; documentation</a>
+          </p>
         </div>
       </article>
       <article class="project">
@@ -144,6 +158,57 @@
         </p>
         </div>
       </article>
+    </section>
+
+    <section id="background" aria-labelledby="background-heading">
+      <h2 id="background-heading">Professional background</h2>
+      <article class="project">
+        <div class="project-heading">
+          <h3>ScyllaDB</h3>
+          <p class="meta">Core database · Jan 2019 – Jun 2025</p>
+        </div>
+        <div class="project-description">
+          <p>I led a five-person engineering team responsible for much of the core database’s control plane, particularly schema and topology management. As a core maintainer with merge authority, I reviewed and gated contributions across multiple subsystems.</p>
+          <p class="links">
+            <a href="https://github.com/scylladb/scylladb">ScyllaDB source</a>
+            <a href="https://github.com/kbr-scylla">My ScyllaDB GitHub profile</a>
+          </p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3>poolside</h3>
+          <p class="meta">Software engineer · Feb 2025 – Nov 2025</p>
+        </div>
+        <div class="project-description">
+          <p>I worked on the containerization system used to train and evaluate foundation models for programming with reinforcement learning.</p>
+          <p class="links">
+            <a href="https://poolside.ai/">poolside</a>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="engineering" aria-labelledby="engineering-heading">
+      <h2 id="engineering-heading">Selected engineering work</h2>
+      <p>At ScyllaDB, I worked on the core of a distributed database: moving cluster management to Raft consensus, improving query performance, and supporting topology changes in Change Data Capture. I also built testing tools to find correctness bugs in distributed algorithms and used TLA+ to specify parts of the control plane.</p>
+    </section>
+
+    <section id="education" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <p>I hold an M.Sc. in Computer Science (2020), a B.Sc. in Mathematics (2018), and a B.Sc. in Computer Science (2016), all from the University of Warsaw. I also studied mathematics at the University of Copenhagen on an Erasmus exchange in 2017–2018.</p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Get in touch</h2>
+      <p>Based in Warsaw, Poland.</p>
+      <p class="links">
+        <a href="mailto:kamilgbraun@gmail.com">kamilgbraun@gmail.com</a>
+        <a href="https://www.linkedin.com/in/kamil-braun-9b6827127/">LinkedIn</a>
+        <a href="https://github.com/kbr-">Personal GitHub</a>
+        <a href="https://github.com/kbr-scylla">ScyllaDB GitHub</a>
+        <a href="https://raw.githubusercontent.com/kbr-/cv/refs/heads/main/cv.pdf">CV (PDF)</a>
+      </p>
     </section>
 
     <footer>
