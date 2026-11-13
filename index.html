@@ -34,7 +34,7 @@
     nav { grid-column: 2; grid-row: 1; display: flex; flex-wrap: wrap; gap: 12px 18px; font-size: 13px; }
     h1, h2, h3 { line-height: 1.2; font-weight: 550; }
     h1 { grid-column: 1 / -1; margin: 72px 0 28px; font-size: clamp(44px, 7vw, 72px); letter-spacing: -.055em; }
-    header > p:not(.eyebrow) { grid-column: 1 / -1; max-width: 680px; }
+    header > p:not(.eyebrow) { grid-column: 1 / -1; }
     .intro { margin-bottom: 24px; font-size: clamp(21px, 2.4vw, 25px); line-height: 1.5; letter-spacing: -.02em; }
     header > p:not(.eyebrow):not(.intro) { color: var(--muted); }
     h2 { margin: 0 0 32px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
@@ -47,6 +47,7 @@
     .project, .research-note { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; }
     .project + .project, .research-note + .research-note { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
     .nowrap { white-space: nowrap; }
+    sup { line-height: 0; }
     .meta { margin: 0; max-width: 220px; color: var(--muted); font-size: 12px; line-height: 1.8; }
     .links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 22px 0 0; font-size: 13px; font-weight: 500; }
     footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
@@ -62,26 +63,26 @@
       footer { margin-top: 48px; }
     }
 
-    /* Typography and topology illustration. */
+    /* Typography and banner. */
     main { max-width: 1120px; }
-    header { grid-template-columns: minmax(0, 1fr) 340px; column-gap: 64px; }
+    header { grid-template-columns: minmax(0, 1fr); }
     nav { grid-column: 1 / -1; grid-row: 2; margin-top: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
     .eyebrow, nav, h2, .meta, .links, footer, figcaption { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
     .eyebrow { grid-column: 1 / -1; }
     h1, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
-    h1 { grid-column: 1; grid-row: 3; margin: 56px 0 24px; font-size: clamp(44px, 6vw, 68px); letter-spacing: -.045em; }
-    header > p.intro { grid-column: 1; grid-row: 4; font-size: 22px; }
-    header > p:not(.eyebrow):not(.intro) { grid-column: 1; grid-row: 5; font-size: 15px; }
+    h1 { grid-column: 1; grid-row: 4; margin: 40px 0 24px; font-size: clamp(44px, 6vw, 68px); letter-spacing: -.045em; }
+    header > p.intro { grid-column: 1; grid-row: 5; font-size: 22px; }
+    header > p:not(.eyebrow):not(.intro) { grid-column: 1; grid-row: 6; font-size: 15px; }
     h3 { font-size: 26px; }
     h2 { font-size: 12px; font-weight: 500; }
-    .topology { grid-column: 2; grid-row: 3 / 6; align-self: center; margin: 48px 0 0; }
-    .topology svg { display: block; width: 100%; height: auto; }
-    .topology text { font-family: ui-monospace, Consolas, monospace; fill: #666; font-size: 11px; }
+    .banner { grid-column: 1 / -1; grid-row: 3; margin: 56px 0 0; }
+    .banner img { display: block; width: 100%; height: auto; }
+    @media (max-width: 900px) { .banner img { max-width: 440px; margin: 0 auto; } }
     .project, .research-note { grid-template-columns: 260px minmax(0, 1fr); gap: 48px; }
     @media (max-width: 900px) {
       header { display: block; }
       h1 { margin-top: 40px; }
-      .topology { max-width: 380px; margin: 32px auto 0; }
+      .banner { margin-top: 48px; }
       .project, .research-note { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     }
   </style>
@@ -92,7 +93,7 @@
       <p class="eyebrow">Software &amp; mathematics</p>
       <h1>Kamil Braun</h1>
       <p class="intro">I'm a software engineer specializing in distributed systems, database internals, and correctness.</p>
-      <p>Previously at ScyllaDB and poolside, I've worked on consensus protocols, database control planes, and infrastructure for training programming models. I'm also interested in programming languages and the connections between mathematics and software, including AI-assisted proof-complexity research.</p>
+      <p>I work at AiFi. Previously at ScyllaDB and poolside, I've worked on consensus protocols, database control planes, and infrastructure for training programming models. I'm also interested in programming languages, formal verification in Lean, and the connections between mathematics and software, including AI-assisted mathematical research.</p>
       <nav aria-label="Main navigation">
         <a href="#projects">Projects</a>
         <a href="#writing">Writing &amp; research</a>
@@ -103,41 +104,11 @@
         <a href="https://raw.githubusercontent.com/kbr-/cv/refs/heads/main/cv.pdf">CV (PDF)</a>
         <a href="https://github.com/kbr-">GitHub · kbr-</a>
       </nav>
-      <figure class="topology">
-        <svg viewBox="0 0 340 320" role="img" aria-labelledby="topology-title topology-description">
-          <title id="topology-title">A loop appears, then fills in</title>
-          <desc id="topology-description">Three stages of the Vietoris–Rips filtration of a unit square: four isolated points, a square loop at scale one, and a filled complex at scale square root of two. The first-homology barcode has one interval from one to square root of two.</desc>
-          <defs>
-            <g id="square-points" fill="#171717">
-              <circle cx="0" cy="0" r="3.5"/><circle cx="56" cy="0" r="3.5"/>
-              <circle cx="56" cy="56" r="3.5"/><circle cx="0" cy="56" r="3.5"/>
-            </g>
-          </defs>
-          <g transform="translate(14 55)"><use href="#square-points"/></g>
-          <g transform="translate(141 55)">
-            <path d="M0 0H56V56H0Z" fill="none" stroke="#171717" stroke-width="1.5"/>
-            <use href="#square-points"/>
-          </g>
-          <g transform="translate(266 55)">
-            <path d="M0 0H56V56H0Z" fill="#e6e6e6" stroke="#171717" stroke-width="1.5"/>
-            <path d="M0 0L56 56M56 0L0 56" stroke="#999" stroke-width="1"/>
-            <use href="#square-points"/>
-          </g>
-          <g fill="none" stroke="#aaa"><path d="M89 83h29m-5-4 5 4-5 4"/><path d="M214 83h29m-5-4 5 4-5 4"/></g>
-          <text x="42" y="139" text-anchor="middle">r = 0</text>
-          <text x="169" y="139" text-anchor="middle">r = 1</text>
-          <text x="294" y="139" text-anchor="middle">r = √2</text>
-          <text x="8" y="235">H₁</text>
-          <path d="M42 252H322" fill="none" stroke="#bbb"/>
-          <path d="M169 221V259M222 221V259" stroke="#ddd" stroke-dasharray="2 4"/>
-          <path d="M169 231H222" stroke="#171717" stroke-width="3"/>
-          <circle cx="169" cy="231" r="4" fill="#171717"/>
-          <circle cx="222" cy="231" r="4" fill="white" stroke="#171717" stroke-width="1.5"/>
-          <text x="42" y="277" text-anchor="middle">0</text>
-          <text x="169" y="277" text-anchor="middle">1</text>
-          <text x="222" y="277" text-anchor="middle">√2</text>
-          <text x="310" y="277">r</text>
-        </svg>
+      <figure class="banner">
+        <picture>
+          <source media="(max-width: 900px)" srcset="banner-vertical.png" width="772" height="1108">
+          <img src="banner.png" width="2172" height="430" alt="A Mayer–Vietoris diagram on a torus: one-forms on two overlapping open sets U and V, the short exact sequences of differential forms connected by d, and a SymPy check that d²f = 0.">
+        </picture>
       </figure>
     </header>
 
@@ -145,15 +116,15 @@
       <h2 id="projects-heading">Projects</h2>
       <article class="project">
         <div class="project-heading">
-          <h3>Math Research</h3>
-        <p class="meta">Ongoing research · Python · <span class="nowrap">C++</span> · Computational verification</p>
+          <h3>Noemesis</h3>
+        <p class="meta">Research framework · Python · Lean 4 · AI agents</p>
         </div>
         <div class="project-description">
-        <p>An open research notebook investigating superpolynomial proof-size lower bounds in restricted proof systems. The work is AI-assisted, and the central lower-bound question remains open.</p>
-        <p>The software supports reproducible experiments: verification programs, resource-controlled execution, timing and evidence records, and automated notebook publication through GitHub Actions.</p>
+        <p>A framework for autonomous mathematical research: it runs an AI agent (Codex CLI or Claude Code) on an open problem for weeks at a time and keeps the result inspectable. Every claim has a status in a structured registry, every argument is reviewed by a second, fresh-context agent, selected results are verified in Lean, and the rules the agent works under are enforced by programs rather than by its good intentions.</p>
+        <p>The research record is an append-only notebook in Git, published automatically through GitHub Actions; computations run under resource limits with their output and timing saved as evidence. Work in Noemesis produced a <a href="https://arxiv.org/abs/2609.23015">proof-complexity lower bound</a> whose main results are formalized in Lean 4.</p>
         <p class="links">
-          <a href="/math-research">Math Research notebook</a>
-          <a href="https://github.com/kbr-/math-research">Math Research source</a>
+          <a href="/math-research">Research notebook</a>
+          <a href="https://github.com/kbr-/math-research">Noemesis source</a>
         </p>
         </div>
       </article>
@@ -169,6 +140,17 @@
           <a href="https://github.com/LPaxos/lattistore">LattiStore source</a>
           <a href="https://github.com/LPaxos/LPaxos">LPaxos research</a>
         </p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3>Kotlean</h3>
+          <p class="meta">Framework · Lean 4 · Kotlin · Android</p>
+        </div>
+        <div class="project-description">
+          <p>Android apps, proven: write an app's state, behavior and UI in Lean, prove properties of that code, and compile it into the app, so the code you prove is the code that runs. A small Kotlin host renders native Android Views and Canvas drawing and performs platform effects.</p>
+          <p>The architecture follows Elm's model/update/view loop and Roc's separation of application logic from platform effects. Examples include SnackNet, a maze-chase game written entirely in Lean.</p>
+          <p class="links"><a href="https://github.com/kbr-/kotlean">Kotlean source</a></p>
         </div>
       </article>
       <article class="project">
@@ -209,6 +191,20 @@
       <h2 id="writing-heading">Writing &amp; research</h2>
       <article class="research-note">
         <div class="project-heading">
+          <h3>An exponential lower bound for the bit pigeonhole principle in resolution over parities</h3>
+          <p class="meta">Preprint · arXiv:2609.23015 · Proof complexity · 2026</p>
+        </div>
+        <div class="project-description">
+          <p>Superpolynomial size lower bounds for resolution over parities, Res(⊕), were previously known only for restricted refutations: tree-like, regular, or of bounded depth. The paper proves that every DAG-like Res(⊕) refutation of the bit pigeonhole principle has 2<sup>Ω(n/log² n)</sup> clauses, with no restriction on regularity or depth.</p>
+          <p>The main theorem and all its dependencies are formalized in Lean 4. The proof was developed with substantial AI assistance in Noemesis.</p>
+          <p class="links">
+            <a href="https://arxiv.org/abs/2609.23015">arXiv abstract</a>
+            <a href="https://arxiv.org/pdf/2609.23015">Read the paper (PDF)</a>
+          </p>
+        </div>
+      </article>
+      <article class="research-note">
+        <div class="project-heading">
           <h3>LPaxos: replication without replicated logs</h3>
         <p class="meta">Master's thesis · Computer science</p>
         </div>
@@ -239,8 +235,20 @@
       <h2 id="background-heading">Professional background</h2>
       <article class="project">
         <div class="project-heading">
+          <h3>AiFi</h3>
+          <p class="meta">Senior Software Engineer · Aug 2026 – present</p>
+        </div>
+        <div class="project-description">
+          <p>I designed the rollout framework that keeps AiFi’s fleet of autonomous stores on the current release with no one driving it, together with a Lean model of its admission rules and an AI advisor for its rollout policy.</p>
+          <p class="links">
+            <a href="https://aifi.com/">AiFi</a>
+          </p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-heading">
           <h3>ScyllaDB</h3>
-          <p class="meta">Core database · Jan 2019 – Jun 2025</p>
+          <p class="meta">Core Database · Jan 2019 – Jun 2025</p>
         </div>
         <div class="project-description">
           <p>I led a five-person engineering team responsible for much of the core database’s control plane, particularly schema and topology management. As a core maintainer with merge authority, I reviewed and gated contributions across multiple subsystems.</p>
@@ -253,7 +261,7 @@
       <article class="project">
         <div class="project-heading">
           <h3>poolside</h3>
-          <p class="meta">Software engineer · Feb 2025 – Nov 2025</p>
+          <p class="meta">Software Engineer · Feb 2025 – Nov 2025</p>
         </div>
         <div class="project-description">
           <p>I worked on the containerization system used to train and evaluate foundation models for programming with reinforcement learning.</p>
@@ -266,6 +274,7 @@
 
     <section id="engineering" aria-labelledby="engineering-heading">
       <h2 id="engineering-heading">Selected engineering work</h2>
+      <p>At AiFi, the rollout controller works like <a href="https://en.wikipedia.org/wiki/Control_theory">the thermostat in your home</a>: it compares what each store should run with what it runs, writes per-store version pins to Git, syncs the store through Argo CD and verifies the result, opening a release to lab stores, then canaries, then the rest of the fleet. The Lean model proves that a pre-release never reaches a store, that canaries open only after labs of both store kinds pass, and that the fleet never exceeds its limits on changes in flight. The AI advisor proposes canary sets and policy overrides built from evidence read by deterministic queries; a check refuses any summary stating a number the evidence doesn’t hold, and only a person’s acceptance changes the policy.</p>
       <p>At ScyllaDB, I worked on the core of a distributed database: moving cluster management to Raft consensus, improving query performance, and supporting topology changes in Change Data Capture. I also built testing tools to find correctness bugs in distributed algorithms and used TLA+ to specify parts of the control plane.</p>
     </section>
 
